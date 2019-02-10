@@ -3,7 +3,7 @@
 
 const int Trig = 8;
 const int Echo = 9;
-const int ledPin = 11; // 13 – если будете использовать встроенный в Arduino светодиод
+const int ledPin = A0; // 13 – если будете использовать встроенный в Arduino светодиод
 //##### SERVO START #####################
 // Создаем объект для сервопривода
 Servo vservo;
@@ -78,6 +78,7 @@ void vultrasoundmode()
   // Если расстояние меньше наименьшего, то
   if (vHC_SR04() < vmindistance)
   {
+    digitalWrite(ledPin, HIGH);
     // Останавливаем двигатели
     Serial.println("vrelease");
     // Крутим серву измеряя расстояния и занося данные в массив
@@ -127,6 +128,8 @@ void vultrasoundmode()
   }
   else
   {
+  digitalWrite(ledPin, LOW);
+
     // Едем прямо
     Serial.println("vforward");
   }
